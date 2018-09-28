@@ -1,0 +1,27 @@
+{% extends './layout.html' %}
+{% block title %}Course Dashboard{% endblock %}
+
+{% block body %}
+    {% if teachers %}
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form action="{% url 'courses:create' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Python 101">
+            <select name="teacher">
+                {% for teacher in teachers %}
+                <option value="{{ teacher.id }}">{{ teacher.name }}</option>
+                {% endfor %}
+            </select>
+            <!-- <input type="submit" value="Create Course"> -->
+            <button type="submit" name="submit" value="Create Course">Create Course</button>
+        </form>
+        {% else %}
+        <h2>You need to make some teachers first!</h2>
+    {% endif %}
+{% endblock %}

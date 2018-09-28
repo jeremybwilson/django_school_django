@@ -1,0 +1,29 @@
+{% extends './layout.html' %}
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+        <div class="row">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="form-container">
+                <h2>Edit User</h2>
+                <form action="{% url 'users:update' user_id=user.id %}" method="POST">
+                    {% csrf_token %}
+                        <div class="form-group">
+                        <label for="name">Name</label>
+                        <input class="form-control" type="text" name="name" value="{{user.name}}">
+                        <label for="email">Email</label>
+                        <input class="form-control"type="email" name="email" value="{{user.email}}">
+                        <!-- <input type="submit" value="Edit User"> -->
+                        <button type="submit" name="submit" class="btn btn-primary btn-sm" value="Edit User">Edit User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+{% endblock %}

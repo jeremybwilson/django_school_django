@@ -1,0 +1,40 @@
+
+h1, h2, h3, h4, h5, p, button, table {
+    display:block;
+    width: 100%;
+}
+
+form {
+    display: inline-block;
+}
+
+th {
+    text-align: center;
+}
+
+.btn.btn-primary {
+    margin: 1em 0;
+}
+
+.strong {
+    font-weight: bold;
+}
+
+.datestamp {
+    font-size: 1em;
+    display: inline-block;
+}
+
+/* form {
+    margin-top: 5px;
+    margin-right: auto;
+    margin-left: auto;
+} */
+
+.red, .error {
+    color: red;
+}
+
+.green, .success {
+    color: green;
+}

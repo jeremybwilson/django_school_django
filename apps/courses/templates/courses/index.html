@@ -1,0 +1,13 @@
+{% extends './layout.html' %}
+{% block title %}Courses Dashboard{% endblock %}
+
+{% block body %}
+        <div class="row">
+            <h1>Courses</h1>
+            <ul>
+                {% for course in courses %}
+                <li>{{ course.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+{% endblock %}

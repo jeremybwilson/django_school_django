@@ -1,0 +1,49 @@
+{% extends './layout.html' %}
+{% block title %}Results Page{% endblock %}
+
+{% block body %}
+        <div class="row">
+            <h1>Results page</h1>
+        </div>
+        <div class="row ">
+            <h3>Submitted Information</h3>
+            <p>Welcome {{ name }}</p>
+        </div>
+        <div class="row">
+            <div class="col-3">Your Name:</div> <div class="col-9">{{ name }}</div>
+        </div>
+        <div class="row">
+            <div class="col-3">Email:</div> <div class="col-9">{{ email }}</div>
+        </div>
+        <div class="row">
+            <div class="col-3">Permission level:</div> <div class="col-9">{{ permission_level }}</div>
+        </div>
+        <div class="row">
+            <a class="btn btn-link" href="/users/{{ user_id }}/edit" role="button">Edit User</a>
+        </div>
+        <div class="row">
+            <div class="courses-taught">
+                <h3>Courses Taught</h3>
+                <ul>
+                    {% for course in courses_taught %}
+                    <li>{{ course.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="enrolled-courses">
+                <h3>Enrolled Courses</h3>
+                <ul>
+                    {% for course in enrolled_courses %}
+                    <li>{{ course.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% if request.session.logged_in == True %}
+        <div class="row">
+            <a class="btn btn-primary btn-sm" href="{% url 'users:logout' %}" role="button">Clear session</a>
+        </div>
+        {% endif %}
+{% endblock %}

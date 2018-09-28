@@ -1,0 +1,48 @@
+{% extends './layout.html' %}
+{% block title %}Register or Create User{% endblock %}
+
+{% block body %}
+        <div class="row">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <h1>Register or Create User</h1>
+                <form action="{% url 'users:create' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" placeholder="Name" class="form-control">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" placeholder="Valid email" class="form-control">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control">
+                        <label for="confirm_password">Confirm password</label>
+                        <input type="password" name="confirm_password" class="form-control">
+                        <button class="btn btn-primary" type="submit" value="">Create New User</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-6">
+                {% if request.session.logged_in == False %}
+                <h1>Login</h1>
+                <form action="{% url 'users:login' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" placeholder="Valid email" class="form-control">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control">
+                        <button class="btn btn-primary" type="submit" value="Login">Login</button>
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+{% endblock %}

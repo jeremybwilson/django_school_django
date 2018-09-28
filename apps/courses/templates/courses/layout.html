@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Courses Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" 
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/courses/css/styles.css' %}" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            {% if request.session.logged_in != False %}
+            <a href="{% url 'users:logout' %}" class="btn btn-link">Logout</a>
+            {% else %}
+            <a href="{% url 'users:login' %}" class="btn btn-link">Login</a>
+            {% endif %}
+            {% if specific_user.permission_level == 'TEACHER' %}
+            <a href="{% url 'users:new' %}" class="btn btn-link">Create new user</a>
+            {% endif %}
+            <a href="{% url 'users:index' %}" class="btn btn-link">Users Index</a>
+        </div>
+        {% block body %}{% endblock %}
+    </div>
+</body>
+</html>
